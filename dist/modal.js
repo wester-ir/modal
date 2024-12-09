@@ -1,7 +1,7 @@
 /**
  * The Modal library.
  *
- * @github  https://github.com/weska-ir/modal
+ * @github  https://github.com/wester-ir/modal
  * @version 1.0
  */
 var modal = {
