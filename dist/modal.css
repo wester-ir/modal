@@ -180,6 +180,6 @@
     padding-bottom: 1rem;
 }
 
-:is([dir="rtl"] .modal .modal-container .modal-footer) > :not([hidden]) ~ :not([hidden]) {
+:is([dir="rtl"] .modal.modal-dir-auto .modal-container .modal-footer) > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 1;
 }
