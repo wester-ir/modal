@@ -2,7 +2,7 @@
  * The Modal library.
  *
  * @github  https://github.com/wester-ir/modal
- * @version 1.0
+ * @version 1.1
  */
 var modal = {
     classes: {
@@ -20,8 +20,8 @@ var modal = {
                 'Are you sure?': 'آیا مطمئن هستید؟',
             },
         },
-        get(message) {
-            return this.translations[this.lang][message] || message;
+        get(message, lang) {
+            return this.translations[lang || this.lang][message] || message;
         },
     },
     data: {},
@@ -126,6 +126,9 @@ modal.create = function (options) {
     options.closeOutside = options.closeOutside !== undefined ? options.closeOutside : true;
     options.closeButton = options.closeButton !== undefined ? options.closeButton : true;
     options.buttons = options.buttons || [];
+    options.className = options.className || [];
+    options.dir = options.dir || 'auto';
+    options.lang = options.lang || null;
 
     // Elements
     var elements = {};
@@ -139,7 +142,7 @@ modal.create = function (options) {
     elements.footer = document.createElement('div');
 
     // Classes
-    elements.modal.className = 'modal';
+    elements.modal.className = 'modal modal-dir-'+ options.dir + ' ' + options.className;
     elements.container.className = 'modal-container modal-' + options.size;
     elements.header.className = 'modal-header';
     elements.headerTitle.className = 'modal-title';
@@ -195,7 +198,7 @@ modal.create = function (options) {
     if (options.closeButton) {
         options.buttons.push({
             id: 'modal-close-btn',
-            label: modal.localization.get('Close'),
+            label: modal.localization.get('Close', options.lang),
             className: 'btn btn-secondary btn-sm',
             onClick: function () {
                 modal.dismiss(elements.modal.id);
